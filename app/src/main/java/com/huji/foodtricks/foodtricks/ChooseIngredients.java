@@ -12,9 +12,25 @@ import android.view.MenuItem;
 
 public class ChooseIngredients extends AppCompatActivity {
 
+    private static final String RECIPE_BASE_URL = "https://api.edamam.com/search?q=";
+    private static final String SPACE_CHAR = "%20";
+    private static final String API_CREDENTIALS = "&app_id=1b816ee9&app_key=fd31256c4657f51aa2d1edcfb85375fd";
+    private static final String LIMIT_RECIPES = "&to=";
+    private static final int MAX_RECIPES = 3;
+
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
+    }
+
+    protected static String buildUrl(String[] ingridients) {
+        StringBuilder url = new StringBuilder(RECIPE_BASE_URL);
+        for (String ingridient : ingridients) {
+            url.append(ingridient).append(SPACE_CHAR);
+        }
+        url.append(API_CREDENTIALS).append(LIMIT_RECIPES).append(MAX_RECIPES);
+        System.out.println(url.toString());
+        return url.toString();
     }
 
     @Override
@@ -23,7 +39,6 @@ public class ChooseIngredients extends AppCompatActivity {
         setContentView(R.layout.activity_choose_ingredients);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
     }
 
     @Override
