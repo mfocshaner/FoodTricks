@@ -9,6 +9,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import java.util.Scanner;
+import java.nio.charset.StandardCharsets;
+import java.io.IOException;
+import java.net.URL;
+import java.net.*;
+import java.io.*;
 
 public class ChooseIngredients extends AppCompatActivity {
 
@@ -32,6 +38,14 @@ public class ChooseIngredients extends AppCompatActivity {
         System.out.println(url.toString());
         return url.toString();
     }
+
+    protected static String getQuery(String url) throws IOException {
+        try (Scanner scanner = new Scanner(new URL(url).openStream(),
+                StandardCharsets.UTF_8.toString()))
+        {
+            scanner.useDelimiter("\\A"); // tokenize the entire string - NEEDED
+            return scanner.hasNext() ? scanner.next() : ""; // return query or null
+        }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
