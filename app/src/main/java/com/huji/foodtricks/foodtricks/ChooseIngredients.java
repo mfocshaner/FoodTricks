@@ -39,7 +39,8 @@ public class ChooseIngredients extends AppCompatActivity {
         return url.toString();
     }
 
-    protected static String getQuery(String url) throws IOException {
+    protected static String getRecipeStrings(String url) throws IOException {
+        // store the information for the matching url query from Adamame API
         try (Scanner scanner = new Scanner(new URL(url).openStream(),
                 StandardCharsets.UTF_8.toString()))
         {
