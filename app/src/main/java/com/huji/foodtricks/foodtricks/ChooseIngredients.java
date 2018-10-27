@@ -44,11 +44,11 @@ public class ChooseIngredients extends AppCompatActivity {
     protected static String getRecipeStrings(String url) throws IOException {
         // store the information for the matching url query from Adamame API
         try (Scanner scanner = new Scanner(new URL(url).openStream(),
-                StandardCharsets.UTF_8.toString()))
-        {
+                StandardCharsets.UTF_8.toString())) {
             scanner.useDelimiter("\\A"); // tokenize the entire string - NEEDED
             return scanner.hasNext() ? scanner.next() : ""; // return query or null
         }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
