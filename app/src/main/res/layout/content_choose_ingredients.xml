@@ -8,7 +8,7 @@
     tools:context=".ChooseIngredients"
     tools:showIn="@layout/activity_choose_ingredients">
 
-    <TextView
+    <!--TextView
         android:id="@+id/sample_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,19 +17,19 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.06" /-->
 
-    <!--<GridView xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--android:id="@+id/gridview"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:columnWidth="90dp"-->
-        <!--android:numColumns="auto_fit"-->
-        <!--android:verticalSpacing="10dp"-->
-        <!--android:horizontalSpacing="10dp"-->
-        <!--android:stretchMode="columnWidth"-->
-        <!--android:gravity="center"-->
-        <!--/>-->
+    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/gridview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnWidth="150dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        />
 
 
 </android.support.constraint.ConstraintLayout>
