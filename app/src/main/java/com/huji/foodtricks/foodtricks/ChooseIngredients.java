@@ -1,6 +1,9 @@
 package com.huji.foodtricks.foodtricks;
 
 import android.os.Bundle;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,12 +12,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
+
 import java.util.Scanner;
 import java.nio.charset.StandardCharsets;
 import java.io.IOException;
 import java.net.URL;
 import java.net.*;
 import java.io.*;
+
 
 public class ChooseIngredients extends AppCompatActivity {
 
@@ -23,11 +30,6 @@ public class ChooseIngredients extends AppCompatActivity {
     private static final String API_CREDENTIALS = "&app_id=1b816ee9&app_key=fd31256c4657f51aa2d1edcfb85375fd";
     private static final String LIMIT_RECIPES = "&to=";
     private static final int MAX_RECIPES = 3;
-
-    // Used to load the 'native-lib' library on application startup.
-    static {
-        System.loadLibrary("native-lib");
-    }
 
     protected static String buildUrl(String[] ingridients) {
         StringBuilder url = new StringBuilder(RECIPE_BASE_URL);
@@ -49,11 +51,32 @@ public class ChooseIngredients extends AppCompatActivity {
         }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_ingredients);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.content_choose_ingredients);
+        setupGridView();
+
+    }
+
+    public void setupGridView(){
+        final GridView gridview = (GridView) findViewById(R.id.gridview);
+        gridview.setAdapter(new ImageAdapter(this));
+
+        gridview.setOnItemClickListener(new OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                ImageAdapter adapter = (ImageAdapter) gridview.getAdapter();
+                adapter.setIsPressed(position);
+                if (adapter.getIsPressed(position)) {
+                    ImageView imageView = (ImageView) v;
+                    imageView.setImageAlpha(100);
+                } else {
+                    ImageView imageView = (ImageView) v;
+                    imageView.setImageAlpha(255);
+                }
+
+            }
+        });
     }
 
     @Override
@@ -78,9 +101,4 @@ public class ChooseIngredients extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A native method that is implemented by the 'native-lib' native library,
-     * which is packaged with this application.
-     */
-    public native String stringFromJNI();
 }
