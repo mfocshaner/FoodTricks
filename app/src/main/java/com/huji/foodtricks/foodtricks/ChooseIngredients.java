@@ -15,6 +15,14 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+import java.util.Scanner;
+import java.nio.charset.StandardCharsets;
+import java.io.IOException;
+import java.net.URL;
+import java.net.*;
+import java.io.*;
+
+
 public class ChooseIngredients extends AppCompatActivity {
 
     private static final String RECIPE_BASE_URL = "https://api.edamam.com/search?q=";
@@ -32,6 +40,15 @@ public class ChooseIngredients extends AppCompatActivity {
         System.out.println(url.toString());
         return url.toString();
     }
+
+    protected static String getRecipeStrings(String url) throws IOException {
+        // store the information for the matching url query from Adamame API
+        try (Scanner scanner = new Scanner(new URL(url).openStream(),
+                StandardCharsets.UTF_8.toString()))
+        {
+            scanner.useDelimiter("\\A"); // tokenize the entire string - NEEDED
+            return scanner.hasNext() ? scanner.next() : ""; // return query or null
+        }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
