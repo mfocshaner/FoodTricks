@@ -8,6 +8,9 @@ import android.widget.ImageView;
 
 import java.util.Arrays;
 
+/**
+ * sets up an image grid
+ */
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
     // references to our images
@@ -58,7 +61,6 @@ public class ImageAdapter extends BaseAdapter {
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
-            //imageView.setLayoutParams(new ViewGroup.LayoutParams(100, 100));
             imageView.setAdjustViewBounds(true);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(8, 8, 8, 8);

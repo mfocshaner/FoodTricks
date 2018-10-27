@@ -37,7 +37,11 @@ public class ChooseIngredients extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_choose_ingredients);
+        setupGridView();
 
+    }
+
+    public void setupGridView(){
         final GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
 
@@ -49,7 +53,7 @@ public class ChooseIngredients extends AppCompatActivity {
                 if (adapter.getIsPressed(position)) {
                     ImageView imageView = (ImageView) v;
                     imageView.setImageAlpha(100);
-                }else{
+                } else {
                     ImageView imageView = (ImageView) v;
                     imageView.setImageAlpha(255);
                 }
