@@ -14,6 +14,10 @@ public class Recipe {
     int _duration; // Cooking time in minutes
     double _difficulty;
 
+    public double get_difficulty() {
+        return _difficulty;
+    }
+
     public Recipe(JsonObject recipe_json) {
         JsonObject recipe_elem = (JsonObject) recipe_json.get("recipe");
         this._name = recipe_elem.get("label").getAsString();
