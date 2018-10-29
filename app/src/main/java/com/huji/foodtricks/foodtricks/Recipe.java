@@ -12,6 +12,7 @@ public class Recipe {
     String _pic_url;
     String _url;
     int _duration; // Cooking time in minutes
+    double _difficulty;
 
     public Recipe(JsonObject recipe_json) {
         JsonObject recipe_elem = (JsonObject) recipe_json.get("recipe");
@@ -19,7 +20,7 @@ public class Recipe {
         this._url= recipe_elem.get("url").getAsString();
         this._duration= recipe_elem.get("totalTime").getAsInt();
         this._pic_url= recipe_elem.get("image").getAsString();
-
+        this._difficulty = recipe_elem.getAsJsonArray("ingredients").size();
     }
 
     public String get_name() {
