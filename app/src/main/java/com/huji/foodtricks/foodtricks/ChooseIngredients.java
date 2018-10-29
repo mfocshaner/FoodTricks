@@ -1,26 +1,29 @@
 package com.huji.foodtricks.foodtricks;
 
 import android.os.Bundle;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
+import android.widget.ImageView;
 
-import java.util.Scanner;
-import java.nio.charset.StandardCharsets;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import org.json.JSONException;
+
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.URL;
-import java.net.*;
-import java.io.*;
+import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 
 public class ChooseIngredients extends AppCompatActivity {
@@ -48,6 +51,29 @@ public class ChooseIngredients extends AppCompatActivity {
             scanner.useDelimiter("\\A"); // tokenize the entire string - NEEDED
             return scanner.hasNext() ? scanner.next() : ""; // return query or null
         }
+    }
+
+    private static String readAll(Reader rd) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        int cp;
+        while ((cp = rd.read()) != -1) {
+            sb.append((char) cp);
+        }
+        return sb.toString();
+    }
+
+    public static JsonElement readJsonFromUrl(String url_string) throws IOException, JSONException {
+
+        // Connect to the URL using java's native library
+        URL url = new URL(url_string);
+        URLConnection request = url.openConnection();
+        request.connect();
+
+        // Convert to a JSON object to print data
+        JsonParser jp = new JsonParser(); //from gson
+        JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent())); //Convert the input stream to a json element
+        JsonObject rootobj = root.getAsJsonObject(); //May be an array, may be an object.
+        return rootobj.get("hits");
     }
 
     @Override

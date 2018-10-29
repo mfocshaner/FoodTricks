@@ -1,15 +1,14 @@
 package com.huji.foodtricks.foodtricks;
 
-import org.json.JSONArray;
+import com.google.gson.JsonElement;
+
 import org.json.JSONException;
-import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
+import java.util.Scanner;
 public class Recipe {
+
 
     String _name;
     String _pic_url;
@@ -38,35 +37,17 @@ public class Recipe {
         System.out.println(url);
         String result = ChooseIngredients.getRecipeStrings(url);
         System.out.println(result);
-        getJsonFromFile();
+        JsonElement obj = ChooseIngredients.readJsonFromUrl(url);
     }
 
     public static String readFile()
             throws IOException
     {
-        byte[] encoded = Files.readAllBytes(Paths.get("returnedRecipes"));
-        return new String(encoded,  StandardCharsets.ISO_8859_1);
-    }
 
-    public static String getJsonFromFile() throws IOException, JSONException {
-//        JSONParser parser = new JSONParser();
-//        JSONArray json_data = (JSONArray) parser.parse(new FileReader("returnedRecipes"));
-//        for (Object o : json_data)
-//        {
-//            JSONObject recipe = (JSONObject) o;
-//            System.out.println(recipe);
-//        }
-        JSONObject returned_query = new JSONObject(readFile());
-//        String in;
-//        JSONObject reader = new JSONObject(in);
-        JSONArray recipe_hits = returned_query.getJSONArray("hits");
-        int n = recipe_hits.length();
-
-        for (int i = 0; i < n ; i++)
-        {
-            System.out.println(recipe_hits.getJSONObject(i));
-        }
-        return "None";
+        Scanner scanner = new Scanner( new File("C:\\Users\\idosa\\AndroidStudioProjects\\FoodTricks\\app\\src\\main\\java\\returnedRecipes") );
+        String text = scanner.useDelimiter("\\A").next();
+        scanner.close();
+        return text;
     }
 
 }
