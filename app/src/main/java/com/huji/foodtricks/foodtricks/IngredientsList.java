@@ -1,10 +1,11 @@
 package com.huji.foodtricks.foodtricks;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /// List of ingredients and amounts.
-public class IngredientsList {
+public class IngredientsList implements Serializable {
 
     private HashMap<String, Integer> ingredientsMap = new HashMap<>();
 

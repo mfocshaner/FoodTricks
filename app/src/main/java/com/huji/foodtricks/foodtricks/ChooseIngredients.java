@@ -1,5 +1,6 @@
 package com.huji.foodtricks.foodtricks;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -30,6 +31,9 @@ public class ChooseIngredients extends AppCompatActivity {
     private static final String API_CREDENTIALS = "&app_id=1b816ee9&app_key=fd31256c4657f51aa2d1edcfb85375fd";
     private static final String LIMIT_RECIPES = "&to=";
     private static final int MAX_RECIPES = 3;
+    private static final String INGREDIENTS = "Ingredients";
+
+    private IngredientsList ingredientsList;
 
     protected static String buildUrl(String[] ingridients) {
         StringBuilder url = new StringBuilder(RECIPE_BASE_URL);
@@ -56,6 +60,7 @@ public class ChooseIngredients extends AppCompatActivity {
         setContentView(R.layout.content_choose_ingredients);
         setupGridView();
 
+        ingredientsList = new IngredientsList();
     }
 
     public void setupGridView(){
@@ -99,6 +104,13 @@ public class ChooseIngredients extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void feedMe(View view) {
+        Intent feedIntent = new Intent(this, SecondActivity.class);
+        feedIntent.putExtra(INGREDIENTS, ingredientsList);
+
+        startActivity(feedIntent);
     }
 
 }
