@@ -27,7 +27,16 @@ public class RecipesFactory {
         return rootobj.getAsJsonArray("hits");
     }
 
+    /**
+     * The factory receive a url containing the requested query and using the constructor of Recipe
+     * return a list of the recipes objects
+     * @param url
+     * @return
+     * @throws IOException
+     * @throws JSONException
+     */
     public static Recipe[] getRecipes(String url) throws IOException, JSONException {
+
         JsonArray recipe_list_json = readJsonFromUrl(url);
         int length = recipe_list_json.size();
         Recipe[] recipe_list_obj = new Recipe[length];
