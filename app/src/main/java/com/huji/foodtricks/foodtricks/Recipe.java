@@ -1,20 +1,24 @@
 package com.huji.foodtricks.foodtricks;
 
-import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
 public class Recipe {
 
 
     String _name;
     String _pic_url;
+    String _url;
     int _duration; // Cooking time in minutes
 
-    public Recipe(String jsonInfo) {
+    public Recipe(JsonObject recipe_json) {
+        JsonObject recipe_elem = (JsonObject) recipe_json.get("recipe");
+        this._name = recipe_elem.get("label").getAsString();
+        this._url= recipe_elem.get("url").getAsString();
+        this._duration= recipe_elem.get("totalTime").getAsInt();
+        this._pic_url= recipe_elem.get("image").getAsString();
 
     }
 
@@ -30,24 +34,16 @@ public class Recipe {
         return _duration;
     }
 
+    public String get_url() {
+        return _url;
+    }
+
     public static void main(String[] args) throws IOException, JSONException {
         // this function is here only to test the validity and the format of the returned info
         String[] ingridients = {"cheese", "chicken"};
         String url = ChooseIngredients.buildUrl(ingridients);
-        System.out.println(url);
-        String result = ChooseIngredients.getRecipeStrings(url);
-        System.out.println(result);
-        JsonElement obj = ChooseIngredients.readJsonFromUrl(url);
+        RecipesFactory.getRecipes(url);
     }
 
-    public static String readFile()
-            throws IOException
-    {
-
-        Scanner scanner = new Scanner( new File("C:\\Users\\idosa\\AndroidStudioProjects\\FoodTricks\\app\\src\\main\\java\\returnedRecipes") );
-        String text = scanner.useDelimiter("\\A").next();
-        scanner.close();
-        return text;
-    }
 
 }

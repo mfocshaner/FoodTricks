@@ -10,6 +10,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -19,7 +20,6 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
@@ -53,16 +53,7 @@ public class ChooseIngredients extends AppCompatActivity {
         }
     }
 
-    private static String readAll(Reader rd) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        int cp;
-        while ((cp = rd.read()) != -1) {
-            sb.append((char) cp);
-        }
-        return sb.toString();
-    }
-
-    public static JsonElement readJsonFromUrl(String url_string) throws IOException, JSONException {
+    public static JsonArray readJsonFromUrl(String url_string) throws IOException, JSONException {
 
         // Connect to the URL using java's native library
         URL url = new URL(url_string);
@@ -73,7 +64,7 @@ public class ChooseIngredients extends AppCompatActivity {
         JsonParser jp = new JsonParser(); //from gson
         JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent())); //Convert the input stream to a json element
         JsonObject rootobj = root.getAsJsonObject(); //May be an array, may be an object.
-        return rootobj.get("hits");
+        return (JsonArray) rootobj.get("hits");
     }
 
     @Override
