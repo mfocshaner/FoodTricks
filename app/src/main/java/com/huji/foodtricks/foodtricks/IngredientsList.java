@@ -42,5 +42,6 @@ public class IngredientsList implements Serializable {
     public ArrayList<String> getIngredientsList() {
         return new ArrayList<>(ingredientsMap.keySet());
     }
-    
+
+
 }
