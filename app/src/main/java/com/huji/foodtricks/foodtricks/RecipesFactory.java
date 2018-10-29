@@ -1,0 +1,39 @@
+package com.huji.foodtricks.foodtricks;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+
+public class RecipesFactory {
+
+    public static JsonArray readJsonFromUrl(String url_string) throws IOException, JSONException {
+        // Connect to the URL using java's native library
+        URL url = new URL(url_string);
+        URLConnection request = url.openConnection();
+        request.connect();
+        // Convert to a JSON object to print data
+        JsonParser jp = new JsonParser(); //from gson
+        JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent())); //Convert the input stream to a json element
+        JsonObject rootobj = root.getAsJsonObject(); //May be an array, may be an object.
+        return rootobj.getAsJsonArray("hits");
+    }
+
+    public static Recipe[] getRecipes(String url) throws IOException, JSONException {
+        JsonArray recipe_list_json = readJsonFromUrl(url);
+        int length = recipe_list_json.size();
+        Recipe[] recipe_list_obj = new Recipe[length];
+        for (int i = 0; i < length; i++) {
+            recipe_list_obj[i] = new Recipe((JsonObject) recipe_list_json.get(i));
+        }
+        return recipe_list_obj;
+    }
+}
