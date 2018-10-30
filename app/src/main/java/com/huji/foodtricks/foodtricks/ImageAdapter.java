@@ -15,17 +15,17 @@ public class ImageAdapter extends BaseAdapter {
     private Context mContext;
     // references to our images
     private Integer[] mThumbIds = {
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7,
-            R.drawable.sample_0, R.drawable.sample_1,
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7,
-            R.drawable.sample_0, R.drawable.sample_1,
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7
+            R.drawable.apple, R.drawable.avocado,
+            R.drawable.broccoli, R.drawable.carrot,
+            R.drawable.cheese, R.drawable.chili,
+            R.drawable.fish, R.drawable.flour,
+            R.drawable.lemon, R.drawable.meat,
+            R.drawable.mushroom, R.drawable.onion,
+            R.drawable.beans, R.drawable.butter,
+            R.drawable.cauliflower, R.drawable.cucumber,
+            R.drawable.eggs, R.drawable.garlic,
+            R.drawable.rice, R.drawable.steak,
+            R.drawable.olive, R.drawable.grapes,
     };
 
     private boolean[] isPressed = new boolean[22];
