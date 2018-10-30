@@ -67,6 +67,7 @@ public class ChooseIngredients extends AppCompatActivity {
         final GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
 
+
         gridview.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
@@ -106,11 +107,11 @@ public class ChooseIngredients extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void feedMe(View view) {
-        Intent feedIntent = new Intent(this, SecondActivity.class);
-        feedIntent.putExtra(INGREDIENTS, ingredientsList);
-
-        startActivity(feedIntent);
-    }
+//    public void feedMe(View view) {
+//        Intent feedIntent = new Intent(this, SecondActivity.class);
+//        feedIntent.putExtra(INGREDIENTS, ingredientsList);
+//
+//        startActivity(feedIntent);
+//    }
 
 }
