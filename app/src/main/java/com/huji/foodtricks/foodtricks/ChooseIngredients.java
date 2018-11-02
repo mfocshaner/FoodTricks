@@ -102,11 +102,11 @@ public class ChooseIngredients extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    public void feedMe(View view) {
-//        Intent feedIntent = new Intent(this, SecondActivity.class);
-//        feedIntent.putExtra(INGREDIENTS, ingredientsList);
-//
-//        startActivity(feedIntent);
-//    }
+    public void feedMe(View view) {
+        Intent feedIntent = new Intent(this, RecipesView.class);
+        feedIntent.putExtra(INGREDIENTS, ingredientsList);
+
+        startActivity(feedIntent);
+    }
 
 }
