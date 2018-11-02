@@ -21,11 +21,11 @@ public class ImageAdapter extends BaseAdapter {
             R.drawable.fish, R.drawable.flour,
             R.drawable.lemon, R.drawable.meat,
             R.drawable.mushroom, R.drawable.onion,
-//            R.drawable.beans, R.drawable.butter,
-//            R.drawable.cauliflower, R.drawable.cucumber,
-//            R.drawable.eggs, R.drawable.garlic,
-//            R.drawable.rice, R.drawable.steak,
-//            R.drawable.olive, R.drawable.grapes,
+            R.drawable.beans, R.drawable.butter,
+            R.drawable.cauliflower, R.drawable.cucumber,
+            R.drawable.eggs, R.drawable.garlic,
+            R.drawable.rice, R.drawable.steak,
+            R.drawable.olive, R.drawable.grapes
     };
 
     private boolean[] isPressed = new boolean[22];
