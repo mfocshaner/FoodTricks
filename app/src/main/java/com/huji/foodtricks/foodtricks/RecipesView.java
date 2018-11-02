@@ -20,7 +20,7 @@ public class RecipesView extends AppCompatActivity {
 
         list.add(new RecipeCard("drawable://" + R.drawable.pasta, "Pasta"));
         list.add(new RecipeCard("drawable://" + R.drawable.chicken, "Chicken"));
-        list.add(new RecipeCard("drawable://" + R.drawable.rice, "Rice"));
+        list.add(new RecipeCard("drawable://" + R.drawable.rice_recipe, "Rice"));
         list.add(new RecipeCard("drawable://" + R.drawable.quinoa, "Quinoa"));
 
         CustomListAdapter adapter = new CustomListAdapter(this, R.layout.activity_recipes_view, list);
