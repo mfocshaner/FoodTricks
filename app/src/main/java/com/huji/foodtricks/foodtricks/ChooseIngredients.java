@@ -112,7 +112,7 @@ public class ChooseIngredients extends AppCompatActivity {
 
     public void feedMe(View view) {
 //        Intent feedIntent = new Intent(this, SecondActivity.class);
-        Intent feedIntent = new Intent(this, ChooseIngredients.class);
+        Intent feedIntent = new Intent(this, RecipesView.class);
         feedIntent.putExtra(INGREDIENTS, ingredientsList);
         feedIntent.putExtra(COOKING_TIME, currentCookingTime);
 

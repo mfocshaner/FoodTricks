@@ -24,7 +24,7 @@ public class ImageAdapter extends BaseAdapter {
             R.drawable.beans, R.drawable.butter,
             R.drawable.cauliflower, R.drawable.cucumber,
             R.drawable.eggs, R.drawable.garlic,
-            R.drawable.rice_recipe, R.drawable.steak,
+            R.drawable.rice, R.drawable.steak,
             R.drawable.olive, R.drawable.grapes
     };
 

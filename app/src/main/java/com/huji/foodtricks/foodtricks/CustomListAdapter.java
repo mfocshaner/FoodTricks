@@ -33,7 +33,6 @@ public class CustomListAdapter  extends ArrayAdapter<RecipeCard> {
 
     private Context mContext;
     private int mResource;
-    private int lastPosition = -1;
 
     /**
      * Holds variables in a View
@@ -107,7 +106,7 @@ public class CustomListAdapter  extends ArrayAdapter<RecipeCard> {
 
             //create display options
             DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true)
-                    .cacheOnDisc(true).resetViewBeforeLoading(true)
+                    .cacheOnDisk(true).resetViewBeforeLoading(true)
                     .showImageForEmptyUri(defaultImage)
                     .showImageOnFail(defaultImage)
                     .showImageOnLoading(defaultImage).build();
@@ -127,9 +126,8 @@ public class CustomListAdapter  extends ArrayAdapter<RecipeCard> {
      * Required for setting up the Universal Image loader Library
      */
     private void setupImageLoader(){
-        // UNIVERSAL IMAGE LOADER SETUP
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-                .cacheOnDisc(true).cacheInMemory(true)
+                .cacheOnDisk(true).cacheInMemory(true)
                 .imageScaleType(ImageScaleType.EXACTLY)
                 .displayer(new FadeInBitmapDisplayer(300)).build();
 
@@ -137,9 +135,8 @@ public class CustomListAdapter  extends ArrayAdapter<RecipeCard> {
                 mContext)
                 .defaultDisplayImageOptions(defaultOptions)
                 .memoryCache(new WeakMemoryCache())
-                .discCacheSize(100 * 1024 * 1024).build();
+                .diskCacheSize(100 * 1024 * 1024).build();
 
         ImageLoader.getInstance().init(config);
-        // END - UNIVERSAL IMAGE LOADER SETUP
     }
 }
