@@ -13,11 +13,10 @@ import java.util.HashMap;
  * sets up an image grid
  */
 public class ImageAdapter extends BaseAdapter {
-    private static final int INGREDIENTS_AMOUNT = 31;
 
     private Context mContext;
     // references to our images
-    private Integer[] mThumbIds = {
+    private static Integer[] mThumbIds = {
             R.drawable.apple, R.drawable.avocado,
             R.drawable.beans, R.drawable.broccoli,
             R.drawable.butter, R.drawable.carrot,
@@ -36,6 +35,9 @@ public class ImageAdapter extends BaseAdapter {
             R.drawable.cabbage, R.drawable.ginger,
             R.drawable.leek
     };
+
+    private static final int INGREDIENTS_AMOUNT = mThumbIds.length;
+
     private HashMap<Integer, String> ingredientsConversionMap = new HashMap<>();
 
 
@@ -84,11 +86,11 @@ public class ImageAdapter extends BaseAdapter {
         return imageView;
     }
 
-    public String getIngredientName(int id){
+    public String getIngredientName(int id) {
         return ingredientsConversionMap.get(id);
     }
 
-    private void initializeConversionMap(){
+    private void initializeConversionMap() {
         ingredientsConversionMap.put(0,"apple");
         ingredientsConversionMap.put(1,"avocado");
         ingredientsConversionMap.put(2,"beans");
