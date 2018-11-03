@@ -11,10 +11,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.Scanner;
 
 
@@ -25,13 +27,15 @@ public class ChooseIngredients extends AppCompatActivity {
     private static final String API_CREDENTIALS = "&app_id=1b816ee9&app_key=fd31256c4657f51aa2d1edcfb85375fd";
     private static final String LIMIT_RECIPES = "&to=";
     private static final int MAX_RECIPES = 3;
+    private static final int INGREDIENTS_AMOUNT = 31;
     private static final String INGREDIENTS = "Ingredients";
     private static final String COOKING_TIME = "CookingTime";
 
     private IngredientsList ingredientsList;
 
 
-    public enum TotalCookingTime { QUICK, MEDIUM, NO_LIMIT }
+    public enum TotalCookingTime {QUICK, MEDIUM, NO_LIMIT}
+
     private TotalCookingTime currentCookingTime;
 
 
@@ -55,7 +59,6 @@ public class ChooseIngredients extends AppCompatActivity {
     }
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +69,7 @@ public class ChooseIngredients extends AppCompatActivity {
         currentCookingTime = TotalCookingTime.NO_LIMIT;
     }
 
-    public void setupGridView(){
+    public void setupGridView() {
         final GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
 
@@ -76,14 +79,20 @@ public class ChooseIngredients extends AppCompatActivity {
                                     int position, long id) {
                 ImageAdapter adapter = (ImageAdapter) gridview.getAdapter();
                 adapter.setIsPressed(position);
-                if (adapter.getIsPressed(position)) {
-                    ImageView imageView = (ImageView) v;
-                    imageView.setImageAlpha(100);
-                } else {
-                    ImageView imageView = (ImageView) v;
-                    imageView.setImageAlpha(255);
-                }
+                if (position < INGREDIENTS_AMOUNT) {
+                    if (adapter.getIsPressed(position)) {
+                        ImageView imageView = (ImageView) v;
+                        imageView.setImageAlpha(100);
+                        ingredientsList.addIngredient(adapter.getIngredientName(position));
 
+                    } else {
+                        ImageView imageView = (ImageView) v;
+                        imageView.setImageAlpha(255);
+                        ingredientsList.removeIngredient(adapter.getIngredientName(position));
+
+                    }
+
+                }
             }
         });
     }
@@ -124,7 +133,7 @@ public class ChooseIngredients extends AppCompatActivity {
         boolean checked = ((RadioButton) view).isChecked();
 
         // Check which radio button was clicked
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.radioButton_quick:
                 if (checked)
                     currentCookingTime = TotalCookingTime.QUICK;

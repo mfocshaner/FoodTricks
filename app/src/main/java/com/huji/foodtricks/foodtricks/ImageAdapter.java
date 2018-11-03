@@ -7,33 +7,45 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * sets up an image grid
  */
 public class ImageAdapter extends BaseAdapter {
+    private static final int INGREDIENTS_AMOUNT = 31;
+
     private Context mContext;
     // references to our images
     private Integer[] mThumbIds = {
             R.drawable.apple, R.drawable.avocado,
-            R.drawable.broccoli, R.drawable.carrot,
-            R.drawable.cheese, R.drawable.chili,
+            R.drawable.beans, R.drawable.broccoli,
+            R.drawable.butter, R.drawable.carrot,
+            R.drawable.cauliflower, R.drawable.cheese,
+            R.drawable.chicken_icon, R.drawable.chili,
+            R.drawable.cucumber, R.drawable.eggs,
             R.drawable.fish, R.drawable.flour,
-            R.drawable.lemon, R.drawable.meat,
-            R.drawable.mushroom, R.drawable.onion,
-            R.drawable.beans, R.drawable.butter,
-            R.drawable.cauliflower, R.drawable.cucumber,
-            R.drawable.eggs, R.drawable.garlic,
-            R.drawable.rice, R.drawable.steak,
-            R.drawable.olive, R.drawable.grapes
+            R.drawable.garlic, R.drawable.grapes,
+            R.drawable.lemon, R.drawable.lettuce,
+            R.drawable.mushroom, R.drawable.olive_oil,
+            R.drawable.onion, R.drawable.rice,
+            R.drawable.steak, R.drawable.pasta_icon,
+            R.drawable.sausage, R.drawable.spinach,
+            R.drawable.tomato, R.drawable.potatoes,
+            R.drawable.bacon, R.drawable.bell_pepper,
+            R.drawable.cabbage, R.drawable.ginger,
+            R.drawable.leek
     };
+    private HashMap<Integer, String> ingredientsConversionMap = new HashMap<>();
 
-    private boolean[] isPressed = new boolean[22];
+
+    private boolean[] isPressed = new boolean[INGREDIENTS_AMOUNT];
 
 
     public ImageAdapter(Context c) {
         mContext = c;
         Arrays.fill(isPressed, Boolean.FALSE);
+        initializeConversionMap();
     }
 
     public int getCount() {
@@ -70,6 +82,45 @@ public class ImageAdapter extends BaseAdapter {
         imageView.setImageResource(mThumbIds[position]);
 
         return imageView;
+    }
+
+    public String getIngredientName(int id){
+        return ingredientsConversionMap.get(id);
+    }
+
+    private void initializeConversionMap(){
+        ingredientsConversionMap.put(0,"apple");
+        ingredientsConversionMap.put(1,"avocado");
+        ingredientsConversionMap.put(2,"beans");
+        ingredientsConversionMap.put(3,"broccoli");
+        ingredientsConversionMap.put(4,"butter");
+        ingredientsConversionMap.put(5,"carrot");
+        ingredientsConversionMap.put(6,"cauliflower");
+        ingredientsConversionMap.put(7,"cheese");
+        ingredientsConversionMap.put(8,"chicken");
+        ingredientsConversionMap.put(9,"chili");
+        ingredientsConversionMap.put(10,"cucumber");
+        ingredientsConversionMap.put(11,"eggs");
+        ingredientsConversionMap.put(12,"fish");
+        ingredientsConversionMap.put(13,"flour");
+        ingredientsConversionMap.put(14,"garlic");
+        ingredientsConversionMap.put(15,"grapes");
+        ingredientsConversionMap.put(16,"lemon");
+        ingredientsConversionMap.put(17,"lettuce");
+        ingredientsConversionMap.put(18,"mushroom");
+        ingredientsConversionMap.put(19,"olive oil");
+        ingredientsConversionMap.put(20,"onion");
+        ingredientsConversionMap.put(21,"rice");
+        ingredientsConversionMap.put(22,"pasta");
+        ingredientsConversionMap.put(23,"sausage");
+        ingredientsConversionMap.put(24,"spinach");
+        ingredientsConversionMap.put(25,"tomato");
+        ingredientsConversionMap.put(26,"potato");
+        ingredientsConversionMap.put(27,"bacon");
+        ingredientsConversionMap.put(28,"bell pepper");
+        ingredientsConversionMap.put(29,"cabbage");
+        ingredientsConversionMap.put(30,"ginger");
+        ingredientsConversionMap.put(31,"leek");
     }
 
 }
