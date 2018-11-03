@@ -19,7 +19,7 @@
     <ImageButton
         android:id="@+id/feedmeButton"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="120dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:adjustViewBounds="true"
@@ -41,7 +41,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginStart="64dp"
         android:layout_marginEnd="64dp"
-        android:columnWidth="100dp"
+        android:columnWidth="80dp"
         android:horizontalSpacing="10dp"
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth"

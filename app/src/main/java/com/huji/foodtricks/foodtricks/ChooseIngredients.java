@@ -27,7 +27,7 @@ public class ChooseIngredients extends AppCompatActivity {
     private static final String API_CREDENTIALS = "&app_id=1b816ee9&app_key=fd31256c4657f51aa2d1edcfb85375fd";
     private static final String LIMIT_RECIPES = "&to=";
     private static final int MAX_RECIPES = 3;
-    private static final int INGREDIENTS_AMOUNT = 23;
+    private static final int INGREDIENTS_AMOUNT = 31;
     private static final String INGREDIENTS = "Ingredients";
     private static final String COOKING_TIME = "CookingTime";
 

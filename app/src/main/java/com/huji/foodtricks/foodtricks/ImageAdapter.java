@@ -13,7 +13,7 @@ import java.util.HashMap;
  * sets up an image grid
  */
 public class ImageAdapter extends BaseAdapter {
-    private static final int INGREDIENTS_AMOUNT = 23;
+    private static final int INGREDIENTS_AMOUNT = 31;
 
     private Context mContext;
     // references to our images
@@ -29,7 +29,12 @@ public class ImageAdapter extends BaseAdapter {
             R.drawable.lemon, R.drawable.lettuce,
             R.drawable.mushroom, R.drawable.olive_oil,
             R.drawable.onion, R.drawable.rice,
-            R.drawable.steak
+            R.drawable.steak, R.drawable.pasta_icon,
+            R.drawable.sausage, R.drawable.spinach,
+            R.drawable.tomato, R.drawable.potatoes,
+            R.drawable.bacon, R.drawable.bell_pepper,
+            R.drawable.cabbage, R.drawable.ginger,
+            R.drawable.leek
     };
     private HashMap<Integer, String> ingredientsConversionMap = new HashMap<>();
 
@@ -106,7 +111,16 @@ public class ImageAdapter extends BaseAdapter {
         ingredientsConversionMap.put(19,"olive oil");
         ingredientsConversionMap.put(20,"onion");
         ingredientsConversionMap.put(21,"rice");
-        ingredientsConversionMap.put(22,"steak");
+        ingredientsConversionMap.put(22,"pasta");
+        ingredientsConversionMap.put(23,"sausage");
+        ingredientsConversionMap.put(24,"spinach");
+        ingredientsConversionMap.put(25,"tomato");
+        ingredientsConversionMap.put(26,"potato");
+        ingredientsConversionMap.put(27,"bacon");
+        ingredientsConversionMap.put(28,"bell pepper");
+        ingredientsConversionMap.put(29,"cabbage");
+        ingredientsConversionMap.put(30,"ginger");
+        ingredientsConversionMap.put(31,"leek");
     }
 
 }
