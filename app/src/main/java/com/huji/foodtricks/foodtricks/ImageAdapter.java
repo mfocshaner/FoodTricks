@@ -36,6 +36,7 @@ public class ImageAdapter extends BaseAdapter {
             R.drawable.leek
     };
 
+
     private static final int INGREDIENTS_AMOUNT = mThumbIds.length;
 
     private HashMap<Integer, String> ingredientsConversionMap = new HashMap<>();
@@ -113,16 +114,17 @@ public class ImageAdapter extends BaseAdapter {
         ingredientsConversionMap.put(19,"olive oil");
         ingredientsConversionMap.put(20,"onion");
         ingredientsConversionMap.put(21,"rice");
-        ingredientsConversionMap.put(22,"pasta");
-        ingredientsConversionMap.put(23,"sausage");
-        ingredientsConversionMap.put(24,"spinach");
-        ingredientsConversionMap.put(25,"tomato");
-        ingredientsConversionMap.put(26,"potato");
-        ingredientsConversionMap.put(27,"bacon");
-        ingredientsConversionMap.put(28,"bell pepper");
-        ingredientsConversionMap.put(29,"cabbage");
-        ingredientsConversionMap.put(30,"ginger");
-        ingredientsConversionMap.put(31,"leek");
+        ingredientsConversionMap.put(22,"beef");
+        ingredientsConversionMap.put(23,"pasta");
+        ingredientsConversionMap.put(24,"sausage");
+        ingredientsConversionMap.put(25,"spinach");
+        ingredientsConversionMap.put(26,"tomato");
+        ingredientsConversionMap.put(27,"potato");
+        ingredientsConversionMap.put(28,"bacon");
+        ingredientsConversionMap.put(29,"bell pepper");
+        ingredientsConversionMap.put(30,"cabbage");
+        ingredientsConversionMap.put(31,"ginger");
+        ingredientsConversionMap.put(32,"leek");
     }
 
 }
