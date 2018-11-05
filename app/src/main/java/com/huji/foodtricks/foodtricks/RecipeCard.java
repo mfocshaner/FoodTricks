@@ -1,27 +1,43 @@
 package com.huji.foodtricks.foodtricks;
 
 public class RecipeCard {
-    private String imgURL;
-    private String title;
+//    private String url;
+//    private String title;
+//
+//    RecipeCard(String url, String title) {
+//        this.url = url;
+//        this.title = title;
+//    }
 
-    public RecipeCard(String imgURL, String title) {
-        this.imgURL = imgURL;
-        this.title = title;
+    private Recipe recipe;
+
+    RecipeCard(Recipe recipe) {
+        this.recipe = recipe;
     }
 
-    public String getImgURL() {
-        return imgURL;
+    //    String getRecipeURL() {
+//        return url;
+//    }
+//
+//    String getTitle() {
+//        return title;
+//    }
+
+    String getRecipeURL() {
+        return recipe.getUrl();
     }
 
-    public void setImgURL(String imgURL) {
-        this.imgURL = imgURL;
+    String getTitle() {
+        return recipe.getTitle();
     }
 
-    public String getTitle() {
-        return title;
+    String getImageURL() {
+        return recipe.getImageUrl();
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    int getDuration() {
+        return recipe.getDuration();
     }
+
+    double getDifficulty() { return recipe.getDifficulty(); }
 }
