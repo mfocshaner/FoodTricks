@@ -19,9 +19,6 @@
     <string name="slide_2_desc">Just click an item to include it</string>
 
     <string name="slide_3_title">Choose cooking time</string>
-    <string name="slide_3_desc">If you want to make something for a special dinner or just a quick fix, we got you covered, enjoy!</string>
-
-    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
-    <string name="play_again">Play Again</string>
+    <string name="slide_3_desc">If you want to make something for a special dinner or just a quick fix, we\'ve got you covered, enjoy!</string>
 
 </resources>
