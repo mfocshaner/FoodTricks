@@ -1,6 +1,9 @@
 package com.huji.foodtricks.foodtricks;
 
 import android.content.Context;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +21,7 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by User on 4/4/2017.
@@ -36,6 +40,7 @@ public class CustomListAdapter  extends ArrayAdapter<RecipeCard> {
     private static class ViewHolder {
         TextView title;
         ImageView image;
+        TextView description;
     }
 
     /**
@@ -57,9 +62,12 @@ public class CustomListAdapter  extends ArrayAdapter<RecipeCard> {
         //sets up the image loader library
         setupImageLoader();
 
-        //get the persons information
-        String title = getItem(position).getTitle();
-        String imgUrl = getItem(position).getImgURL();
+        //get the information
+        String title = Objects.requireNonNull(getItem(position)).getTitle();
+        String imgUrl = Objects.requireNonNull(getItem(position)).getImageURL();
+        final String url = Objects.requireNonNull(getItem(position)).getRecipeURL();
+        int duration = Objects.requireNonNull(getItem(position)).getDuration();
+        int difficulty = (int) Objects.requireNonNull(getItem(position)).getDifficulty();
 
 
         try{
@@ -76,8 +84,9 @@ public class CustomListAdapter  extends ArrayAdapter<RecipeCard> {
                 convertView = inflater.inflate(mResource, parent, false);
 //                convertView = inflater.inflate(mResource, null);
                 holder= new ViewHolder();
-                holder.title = (TextView) convertView.findViewById(R.id.cardTitle);
-                holder.image = (ImageView) convertView.findViewById(R.id.cardImage);
+                holder.title = convertView.findViewById(R.id.cardTitle);
+                holder.image = convertView.findViewById(R.id.cardImage);
+                holder.description = convertView.findViewById(R.id.cardDescription);
 
                 result = convertView;
 
@@ -88,6 +97,14 @@ public class CustomListAdapter  extends ArrayAdapter<RecipeCard> {
                 result = convertView;
             }
 
+            result.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    mContext.startActivity(browserIntent);
+                }
+            });
+
 
 //            Animation animation = AnimationUtils.loadAnimation(mContext,
 //                    (position > lastPosition) ? R.anim.load_down_anim : R.anim.load_up_anim);
@@ -95,6 +112,17 @@ public class CustomListAdapter  extends ArrayAdapter<RecipeCard> {
 //            lastPosition = position;
 
             holder.title.setText(title);
+            String descriptionText = "Recipe Difficulty: " + difficulty;
+            int hours = duration / 60;
+            int minutes = duration % 60;
+            String secondDigit = "";
+            if (minutes < 10){
+                secondDigit = "0";
+            }
+            if (duration > 0){
+                descriptionText += "\nPreparation Time: " + hours + ":" + secondDigit + minutes;
+            }
+            holder.description.setText(descriptionText);
 
             //create the imageloader object
             ImageLoader imageLoader = ImageLoader.getInstance();

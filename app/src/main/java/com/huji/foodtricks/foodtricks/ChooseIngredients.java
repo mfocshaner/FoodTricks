@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -26,10 +27,10 @@ public class ChooseIngredients extends AppCompatActivity {
     private static final String SPACE_CHAR = "%20";
     private static final String API_CREDENTIALS = "&app_id=1b816ee9&app_key=fd31256c4657f51aa2d1edcfb85375fd";
     private static final String LIMIT_RECIPES = "&to=";
-    private static final int MAX_RECIPES = 3;
-    private static final int INGREDIENTS_AMOUNT = 31;
-    private static final String INGREDIENTS = "Ingredients";
-    private static final String COOKING_TIME = "CookingTime";
+    private static final int MAX_RECIPES = 10;
+    private static final int INGREDIENTS_AMOUNT = 33;
+    static final String INGREDIENTS = "Ingredients";
+    static final String COOKING_TIME = "CookingTime";
 
     private IngredientsList ingredientsList;
 
@@ -39,7 +40,7 @@ public class ChooseIngredients extends AppCompatActivity {
     private TotalCookingTime currentCookingTime;
 
 
-    protected static String buildUrl(String[] ingridients) {
+    protected static String buildUrl(ArrayList<String> ingridients) {
         StringBuilder url = new StringBuilder(RECIPE_BASE_URL);
         for (String ingridient : ingridients) {
             url.append(ingridient).append(SPACE_CHAR);
@@ -120,12 +121,13 @@ public class ChooseIngredients extends AppCompatActivity {
     }
 
     public void feedMe(View view) {
-//        Intent feedIntent = new Intent(this, SecondActivity.class);
-        Intent feedIntent = new Intent(this, RecipesView.class);
-        feedIntent.putExtra(INGREDIENTS, ingredientsList);
-        feedIntent.putExtra(COOKING_TIME, currentCookingTime);
+        if (ingredientsList.getIngredientsList().size() > 0) {
+            Intent feedIntent = new Intent(this, RecipesView.class);
+            feedIntent.putExtra(INGREDIENTS, ingredientsList);
+            feedIntent.putExtra(COOKING_TIME, currentCookingTime);
 
-        startActivity(feedIntent);
+            startActivity(feedIntent);
+        }
     }
 
     public void onRadioButtonClicked(View view) {
