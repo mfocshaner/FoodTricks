@@ -27,8 +27,7 @@ public class ChooseIngredients extends AppCompatActivity {
     private static final String SPACE_CHAR = "%20";
     private static final String API_CREDENTIALS = "&app_id=1b816ee9&app_key=fd31256c4657f51aa2d1edcfb85375fd";
     private static final String LIMIT_RECIPES = "&to=";
-    private static final int MAX_RECIPES = 10;
-    private static final int INGREDIENTS_AMOUNT = 33;
+    private static final int MAX_RECIPES = 15;
     static final String INGREDIENTS = "Ingredients";
     static final String COOKING_TIME = "CookingTime";
 
@@ -80,7 +79,7 @@ public class ChooseIngredients extends AppCompatActivity {
                                     int position, long id) {
                 ImageAdapter adapter = (ImageAdapter) gridview.getAdapter();
                 adapter.setIsPressed(position);
-                if (position < INGREDIENTS_AMOUNT) {
+                if (position < ImageAdapter.INGREDIENTS_AMOUNT) {
                     if (adapter.getIsPressed(position)) {
                         ImageView imageView = (ImageView) v;
                         imageView.setImageAlpha(100);

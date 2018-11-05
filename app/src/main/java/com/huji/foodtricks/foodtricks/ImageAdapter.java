@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -15,29 +16,46 @@ import java.util.HashMap;
 public class ImageAdapter extends BaseAdapter {
 
     private Context mContext;
-    // references to our images
-    private static Integer[] mThumbIds = {
-            R.drawable.apple, R.drawable.avocado,
-            R.drawable.beans, R.drawable.broccoli,
-            R.drawable.butter, R.drawable.carrot,
-            R.drawable.cauliflower, R.drawable.cheese,
-            R.drawable.chicken, R.drawable.chili,
-            R.drawable.cucumber, R.drawable.eggs,
-            R.drawable.fish, R.drawable.flour,
-            R.drawable.garlic, R.drawable.grapes,
-            R.drawable.lemon, R.drawable.lettuce,
-            R.drawable.mushroom, R.drawable.olive_oil,
-            R.drawable.onion, R.drawable.rice,
-            R.drawable.beef, R.drawable.pasta,
-            R.drawable.sausage, R.drawable.spinach,
-            R.drawable.tomato, R.drawable.potatoes,
-            R.drawable.bacon, R.drawable.bell_pepper,
-            R.drawable.cabbage, R.drawable.ginger,
-            R.drawable.leek
+
+    private static Ingredient[] ingredients = {
+            new Ingredient(R.drawable.pasta, "pasta"),
+            new Ingredient(R.drawable.rice, "rice"),
+            new Ingredient(R.drawable.potatoes, "potatoes"),
+            new Ingredient(R.drawable.flour, "flour"),
+            new Ingredient(R.drawable.cheese, "cheese"),
+            new Ingredient(R.drawable.beef, "beef"),
+            new Ingredient(R.drawable.chicken, "chicken"),
+            new Ingredient(R.drawable.fish, "fish"),
+            new Ingredient(R.drawable.eggs, "eggs"),
+            new Ingredient(R.drawable.beans, "beans"),
+            new Ingredient(R.drawable.broccoli, "broccoli"),
+            new Ingredient(R.drawable.carrot, "carrot"),
+            new Ingredient(R.drawable.cauliflower, "cauliflower"),
+            new Ingredient(R.drawable.leek, "leek"),
+            new Ingredient(R.drawable.mushroom, "mushroom"),
+            new Ingredient(R.drawable.sausage, "sausage"),
+            new Ingredient(R.drawable.tomato, "tomato"),
+            new Ingredient(R.drawable.avocado, "avocado"),
+            new Ingredient(R.drawable.bell_pepper, "bell pepper"),
+            new Ingredient(R.drawable.cabbage, "cabbage"),
+            new Ingredient(R.drawable.lettuce, "lettuce"),
+            new Ingredient(R.drawable.cucumber, "cucumber"),
+            new Ingredient(R.drawable.spinach, "spinach"),
+            new Ingredient(R.drawable.bacon, "bacon"),
+            new Ingredient(R.drawable.butter, "butter"),
+            new Ingredient(R.drawable.olive_oil, "olive oil"),
+            new Ingredient(R.drawable.onion, "onion"),
+            new Ingredient(R.drawable.garlic, "garlic"),
+            new Ingredient(R.drawable.chili, "chili"),
+            new Ingredient(R.drawable.lemon, "lemon"),
+            new Ingredient(R.drawable.ginger, "ginger"),
+            new Ingredient(R.drawable.grapes, "grapes"),
+            new Ingredient(R.drawable.apple, "apple"),
     };
 
 
-    private static final int INGREDIENTS_AMOUNT = mThumbIds.length;
+
+    static final int INGREDIENTS_AMOUNT = ingredients.length;
 
     private HashMap<Integer, String> ingredientsConversionMap = new HashMap<>();
 
@@ -52,7 +70,7 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     public int getCount() {
-        return mThumbIds.length;
+        return ingredients.length;
     }
 
     public Object getItem(int position) {
@@ -82,7 +100,7 @@ public class ImageAdapter extends BaseAdapter {
         } else {
             imageView = (ImageView) convertView;
         }
-        imageView.setImageResource(mThumbIds[position]);
+        imageView.setImageResource(ingredients[position].getIcon());
 
         return imageView;
     }
@@ -92,39 +110,9 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     private void initializeConversionMap() {
-        ingredientsConversionMap.put(0,"apple");
-        ingredientsConversionMap.put(1,"avocado");
-        ingredientsConversionMap.put(2,"beans");
-        ingredientsConversionMap.put(3,"broccoli");
-        ingredientsConversionMap.put(4,"butter");
-        ingredientsConversionMap.put(5,"carrot");
-        ingredientsConversionMap.put(6,"cauliflower");
-        ingredientsConversionMap.put(7,"cheese");
-        ingredientsConversionMap.put(8,"chicken");
-        ingredientsConversionMap.put(9,"chili");
-        ingredientsConversionMap.put(10,"cucumber");
-        ingredientsConversionMap.put(11,"eggs");
-        ingredientsConversionMap.put(12,"fish");
-        ingredientsConversionMap.put(13,"flour");
-        ingredientsConversionMap.put(14,"garlic");
-        ingredientsConversionMap.put(15,"grapes");
-        ingredientsConversionMap.put(16,"lemon");
-        ingredientsConversionMap.put(17,"lettuce");
-        ingredientsConversionMap.put(18,"mushroom");
-        ingredientsConversionMap.put(19,"olive oil");
-        ingredientsConversionMap.put(20,"onion");
-        ingredientsConversionMap.put(21,"rice");
-        ingredientsConversionMap.put(22,"beef");
-        ingredientsConversionMap.put(23,"pasta");
-        ingredientsConversionMap.put(24,"sausage");
-        ingredientsConversionMap.put(25,"spinach");
-        ingredientsConversionMap.put(26,"tomato");
-        ingredientsConversionMap.put(27,"potato");
-        ingredientsConversionMap.put(28,"bacon");
-        ingredientsConversionMap.put(29,"bell pepper");
-        ingredientsConversionMap.put(30,"cabbage");
-        ingredientsConversionMap.put(31,"ginger");
-        ingredientsConversionMap.put(32,"leek");
+        for (int i = 0; i < INGREDIENTS_AMOUNT; ++i){
+            ingredientsConversionMap.put(i, ingredients[i].getName());
+        }
     }
 
 }
