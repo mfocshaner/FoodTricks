@@ -9,13 +9,6 @@
     >
 
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
     <ImageButton
         android:id="@+id/feedmeButton"
         android:layout_width="match_parent"
@@ -49,38 +42,6 @@
         app:layout_constraintBottom_toTopOf="@+id/feedmeButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:checkedButton="@+id/radioButton_noLimit"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/radioButton_quick"
-            android:onClick="onRadioButtonClicked"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/radio_button_quick" />
-
-        <RadioButton
-            android:id="@+id/radioButton_medium"
-            android:onClick="onRadioButtonClicked"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/radio_button_medium" />
-
-        <RadioButton
-            android:id="@+id/radioButton_noLimit"
-            android:onClick="onRadioButtonClicked"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/radio_button_noLimit" />
-    </RadioGroup>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -34,11 +34,6 @@ public class ChooseIngredients extends AppCompatActivity {
     private IngredientsList ingredientsList;
 
 
-    public enum TotalCookingTime {QUICK, MEDIUM, NO_LIMIT}
-
-    private TotalCookingTime currentCookingTime;
-
-
     protected static String buildUrl(ArrayList<String> ingridients) {
         StringBuilder url = new StringBuilder(RECIPE_BASE_URL);
         for (String ingridient : ingridients) {
@@ -66,7 +61,6 @@ public class ChooseIngredients extends AppCompatActivity {
         setupGridView();
 
         ingredientsList = new IngredientsList();
-        currentCookingTime = TotalCookingTime.NO_LIMIT;
     }
 
     public void setupGridView() {
@@ -89,9 +83,7 @@ public class ChooseIngredients extends AppCompatActivity {
                         ImageView imageView = (ImageView) v;
                         imageView.setImageAlpha(255);
                         ingredientsList.removeIngredient(adapter.getIngredientName(position));
-
                     }
-
                 }
             }
         });
@@ -123,32 +115,8 @@ public class ChooseIngredients extends AppCompatActivity {
         if (ingredientsList.getIngredientsList().size() > 0) {
             Intent feedIntent = new Intent(this, RecipesView.class);
             feedIntent.putExtra(INGREDIENTS, ingredientsList);
-            feedIntent.putExtra(COOKING_TIME, currentCookingTime);
 
             startActivity(feedIntent);
-        }
-    }
-
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch (view.getId()) {
-            case R.id.radioButton_quick:
-                if (checked)
-                    currentCookingTime = TotalCookingTime.QUICK;
-                break;
-            case R.id.radioButton_medium:
-                if (checked) {
-                    currentCookingTime = TotalCookingTime.MEDIUM;
-                }
-                break;
-            case R.id.radioButton_noLimit:
-                if (checked) {
-                    currentCookingTime = TotalCookingTime.NO_LIMIT;
-                }
-                break;
         }
     }
 
