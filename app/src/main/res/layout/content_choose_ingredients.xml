@@ -5,32 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ChooseIngredients"
-    >
+    tools:context=".ChooseIngredients">
 
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/feed_me_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="336dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
 
-    <ImageButton
-        android:id="@+id/feedmeButton"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:adjustViewBounds="true"
-        android:backgroundTint="@android:color/background_light"
         android:onClick="feedMe"
-        android:scaleType="fitCenter"
-        android:src="@drawable/feed_me"
+        android:src="@drawable/find_recipe_button"
+        app:backgroundTint="@color/dot_dark_screen3"
+        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridview" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -41,46 +34,23 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginStart="64dp"
         android:layout_marginEnd="64dp"
+        android:layout_marginBottom="8dp"
         android:columnWidth="80dp"
         android:horizontalSpacing="10dp"
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/feedmeButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:checkedButton="@+id/radioButton_noLimit"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/radioButton_quick"
-            android:onClick="onRadioButtonClicked"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/radio_button_quick" />
-
-        <RadioButton
-            android:id="@+id/radioButton_medium"
-            android:onClick="onRadioButtonClicked"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/radio_button_medium" />
-
-        <RadioButton
-            android:id="@+id/radioButton_noLimit"
-            android:onClick="onRadioButtonClicked"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/radio_button_noLimit" />
-    </RadioGroup>
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="left" />
 
 </android.support.constraint.ConstraintLayout>
