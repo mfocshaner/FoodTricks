@@ -20,7 +20,7 @@ public class RecipesView extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         setContentView(R.layout.recipes_listview_layout);
-        mListView = (ListView) findViewById(R.id.recipeListView);
+        mListView = findViewById(R.id.recipeListView);
 
         IngredientsList ingrdiensList = (IngredientsList) getIntent().getSerializableExtra(ChooseIngredients.INGREDIENTS);
 
@@ -37,10 +37,6 @@ public class RecipesView extends AppCompatActivity {
         } catch (IOException | JSONException e) {
         e.printStackTrace();
         }
-//        list.add(new RecipeCard("drawable://" + R.drawable.pasta, "Pasta"));
-//        list.add(new RecipeCard("drawable://" + R.drawable.chicken, "Chicken"));
-//        list.add(new RecipeCard("drawable://" + R.drawable.rice_recipe, "Rice"));
-//        list.add(new RecipeCard("drawable://" + R.drawable.quinoa, "Quinoa"));
 
         CustomListAdapter adapter = new CustomListAdapter(this, R.layout.activity_recipes_view, list);
         mListView.setAdapter(adapter);

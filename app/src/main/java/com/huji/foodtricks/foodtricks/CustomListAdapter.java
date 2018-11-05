@@ -110,7 +110,17 @@ public class CustomListAdapter  extends ArrayAdapter<RecipeCard> {
 //            lastPosition = position;
 
             holder.title.setText(title);
-            holder.description.setText("Preparation Time: " + duration + "\nRecipe Difficulty: " + difficulty);
+            String descriptionText = "Recipe Difficulty: " + difficulty;
+            int hours = duration / 60;
+            int minutes = duration % 60;
+            String secondDigit = "";
+            if (minutes < 10){
+                secondDigit = "0";
+            }
+            if (duration > 0){
+                descriptionText += "\n Preparation Time: " + hours + ":" + secondDigit + minutes;
+            }
+            holder.description.setText(descriptionText);
 
             //create the imageloader object
             ImageLoader imageLoader = ImageLoader.getInstance();
