@@ -51,13 +51,6 @@
                 android:text="Super hard recipe don't even try it!"
                 android:textSize="16sp"/>
 
-            <activity
-                android:name=".OnboardingActivity"
-                android:enabled="true"
-                android:exported="true"
-                android:theme="@style/Theme.Leanback.Onboarding">
-            </activity>
-
         </RelativeLayout>
 
 

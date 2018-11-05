@@ -1,14 +1,11 @@
 package com.huji.foodtricks.foodtricks;
 
 import android.content.Context;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,7 +18,6 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by User on 4/4/2017.
@@ -78,6 +74,7 @@ public class CustomListAdapter  extends ArrayAdapter<RecipeCard> {
             if(convertView == null){
                 LayoutInflater inflater = LayoutInflater.from(mContext);
                 convertView = inflater.inflate(mResource, parent, false);
+//                convertView = inflater.inflate(mResource, null);
                 holder= new ViewHolder();
                 holder.title = (TextView) convertView.findViewById(R.id.cardTitle);
                 holder.image = (ImageView) convertView.findViewById(R.id.cardImage);
