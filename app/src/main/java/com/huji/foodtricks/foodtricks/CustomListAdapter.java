@@ -118,7 +118,7 @@ public class CustomListAdapter  extends ArrayAdapter<RecipeCard> {
                 secondDigit = "0";
             }
             if (duration > 0){
-                descriptionText += "\n Preparation Time: " + hours + ":" + secondDigit + minutes;
+                descriptionText += "\nPreparation Time: " + hours + ":" + secondDigit + minutes;
             }
             holder.description.setText(descriptionText);
 
