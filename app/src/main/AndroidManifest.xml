@@ -20,7 +20,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name="com.huji.foodtricks.foodtricks.WelcomeActivity">
+        <activity android:name="com.huji.foodtricks.foodtricks.WelcomeActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
