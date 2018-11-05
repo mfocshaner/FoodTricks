@@ -5,4 +5,20 @@
     <string name="radio_button_quick">Quick</string>
     <string name="radio_button_medium">Medium</string>
     <string name="radio_button_noLimit">No Time Limit</string>
+
+
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Hello Food!</string>
+    <string name="slide_1_desc">The easiest way to fix yourself a quick meal</string>
+
+    <string name="slide_2_title">Few clicks</string>
+    <string name="slide_2_desc">Just click an item to include it</string>
+
+    <string name="slide_3_title">Choose cooking time</string>
+    <string name="slide_3_desc">If you want to make something for a special dinner or just a quick fix, we\'ve got you covered, enjoy!</string>
+
 </resources>

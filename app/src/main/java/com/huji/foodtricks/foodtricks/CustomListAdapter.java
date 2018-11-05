@@ -1,6 +1,7 @@
 package com.huji.foodtricks.foodtricks;
 
 import android.content.Context;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -81,6 +82,7 @@ public class CustomListAdapter  extends ArrayAdapter<RecipeCard> {
             if(convertView == null){
                 LayoutInflater inflater = LayoutInflater.from(mContext);
                 convertView = inflater.inflate(mResource, parent, false);
+//                convertView = inflater.inflate(mResource, null);
                 holder= new ViewHolder();
                 holder.title = convertView.findViewById(R.id.cardTitle);
                 holder.image = convertView.findViewById(R.id.cardImage);
