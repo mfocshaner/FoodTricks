@@ -1,11 +1,15 @@
 package com.huji.foodtricks.foodtricks;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
@@ -27,7 +31,7 @@ public class ChooseIngredients extends AppCompatActivity {
     private static final String SPACE_CHAR = "%20";
     private static final String API_CREDENTIALS = "&app_id=1b816ee9&app_key=fd31256c4657f51aa2d1edcfb85375fd";
     private static final String LIMIT_RECIPES = "&to=";
-    private static final int MAX_RECIPES = 15;
+    private static final int MAX_RECIPES = 10;
     static final String INGREDIENTS = "Ingredients";
     static final String COOKING_TIME = "CookingTime";
 
@@ -61,6 +65,18 @@ public class ChooseIngredients extends AppCompatActivity {
         setupGridView();
 
         ingredientsList = new IngredientsList();
+        changeStatusBarColor();
+    }
+
+    /**
+     * Making notification bar transparent
+     */
+    private void changeStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.DKGRAY);
+        }
     }
 
     public void setupGridView() {
@@ -89,6 +105,7 @@ public class ChooseIngredients extends AppCompatActivity {
         });
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -111,6 +128,13 @@ public class ChooseIngredients extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void clearIngredients() {
+        ingredientsList.removeAllIngredients();
+        final GridView gridview = (GridView) findViewById(R.id.gridview);
+        gridview.setAdapter(new ImageAdapter(this));
+        gridview.clearChoices();
+    }
+
     public void feedMe(View view) {
         if (ingredientsList.getIngredientsList().size() > 0) {
             Intent feedIntent = new Intent(this, RecipesView.class);
@@ -120,4 +144,9 @@ public class ChooseIngredients extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        clearIngredients();
+    }
 }
