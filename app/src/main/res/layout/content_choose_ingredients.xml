@@ -26,6 +26,23 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/exclude_all_ingridients_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+
+        android:layout_marginStart="220dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:onClick="excludeAllIngridients"
+        android:src="@drawable/exclude_all_fap"
+        app:backgroundTint="@color/bg_screen1"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/gridview"
         android:layout_width="wrap_content"
