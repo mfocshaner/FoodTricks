@@ -32,10 +32,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
 
-        android:layout_marginStart="220dp"
+        android:layout_marginStart="200dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:onClick="excludeAllIngridients"
+        android:paddingEnd="20dp"
         android:src="@drawable/exclude_all_fap"
         app:backgroundTint="@color/bg_screen1"
         app:fabSize="normal"
