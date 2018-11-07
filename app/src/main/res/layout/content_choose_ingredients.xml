@@ -40,6 +40,7 @@
         app:backgroundTint="@color/bg_screen1"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/feed_me_fab"
         app:layout_constraintStart_toStartOf="parent" />
 
 
