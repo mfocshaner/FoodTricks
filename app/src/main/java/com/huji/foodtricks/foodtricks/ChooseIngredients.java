@@ -14,14 +14,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 
@@ -128,7 +125,7 @@ public class ChooseIngredients extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void clearIngredients() {
+    public void clearIngredients() {
         ingredientsList.removeAllIngredients();
         final GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
@@ -142,6 +139,12 @@ public class ChooseIngredients extends AppCompatActivity {
 
             startActivity(feedIntent);
         }
+    }
+
+    public void excludeAllIngridients(View view) {
+        final GridView gridview = (GridView) findViewById(R.id.gridview);
+        gridview.setAdapter(new ImageAdapter(this));
+        gridview.clearChoices();
     }
 
     @Override
