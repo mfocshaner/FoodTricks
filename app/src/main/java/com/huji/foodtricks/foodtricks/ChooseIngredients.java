@@ -125,7 +125,7 @@ public class ChooseIngredients extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void clearIngredients() {
+    private void clearIngredients() {
         ingredientsList.removeAllIngredients();
         final GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
