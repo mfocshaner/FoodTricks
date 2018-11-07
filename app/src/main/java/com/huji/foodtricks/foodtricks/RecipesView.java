@@ -1,8 +1,12 @@
 package com.huji.foodtricks.foodtricks;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ListView;
 
 import org.json.JSONException;
@@ -40,6 +44,18 @@ public class RecipesView extends AppCompatActivity {
 
         CustomListAdapter adapter = new CustomListAdapter(this, R.layout.activity_recipes_view, list);
         mListView.setAdapter(adapter);
+        changeStatusBarColor();
+    }
+
+    /**
+     * Making notification bar transparent
+     */
+    private void changeStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.DKGRAY);
+        }
     }
 
 
