@@ -1,7 +1,9 @@
 package com.huji.foodtricks.foodtricks;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,15 +16,25 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.Toast;
+
 
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Scanner;
+
+import static com.huji.foodtricks.foodtricks.R.color.dot_dark_screen1;
+import static com.huji.foodtricks.foodtricks.R.color.dot_dark_screen2;
+import static com.huji.foodtricks.foodtricks.R.color.dot_light_screen1;
+import static com.huji.foodtricks.foodtricks.R.color.dot_light_screen2;
+import static com.huji.foodtricks.foodtricks.R.color.dot_light_screen3;
+import static com.huji.foodtricks.foodtricks.R.color.dot_light_screen4;
+import static com.huji.foodtricks.foodtricks.R.color.dot_light_screen5;
+import static com.huji.foodtricks.foodtricks.R.color.material_blue_grey_800;
+import static com.huji.foodtricks.foodtricks.R.color.primary_dark_material_dark;
 
 
 public class ChooseIngredients extends AppCompatActivity {
@@ -34,8 +46,11 @@ public class ChooseIngredients extends AppCompatActivity {
     private static final int MAX_RECIPES = 10;
     static final String INGREDIENTS = "Ingredients";
     static final String COOKING_TIME = "CookingTime";
+    static final Integer ITEM_PRESSED = 70;
+    static final Integer ITEM_UNPRESSED = 255;
 
     private IngredientsList ingredientsList;
+    private Integer[] COLOURS = new Integer[5];
 
 
     protected static String buildUrl(ArrayList<String> ingridients) {
@@ -66,6 +81,12 @@ public class ChooseIngredients extends AppCompatActivity {
 
         ingredientsList = new IngredientsList();
         changeStatusBarColor();
+        COLOURS[0] = getResources().getColor(dot_light_screen1);
+        COLOURS[1] = getResources().getColor(dot_light_screen2);
+        COLOURS[2] = getResources().getColor(dot_light_screen3);
+        COLOURS[3] = getResources().getColor(dot_light_screen4);
+        COLOURS[4] = getResources().getColor(dot_light_screen5);
+
     }
 
     /**
@@ -89,15 +110,17 @@ public class ChooseIngredients extends AppCompatActivity {
                                     int position, long id) {
                 ImageAdapter adapter = (ImageAdapter) gridview.getAdapter();
                 adapter.setIsPressed(position);
+                ImageView imageView;
                 if (position < ImageAdapter.INGREDIENTS_AMOUNT) {
                     if (adapter.getIsPressed(position)) {
-                        ImageView imageView = (ImageView) v;
-                        imageView.setImageAlpha(100);
+//                        imageView = (ImageView) v.findViewById(R.id.custom_image);
+                        v.setBackgroundColor(COLOURS[position % 5]);
                         ingredientsList.addIngredient(adapter.getIngredientName(position));
 
                     } else {
-                        ImageView imageView = (ImageView) v;
-                        imageView.setImageAlpha(255);
+//                        imageView = (ImageView) v.findViewById(R.id.custom_image);
+//                        imageView.setImageAlpha(ITEM_UNPRESSED);
+                        v.setBackgroundColor(0);
                         ingredientsList.removeIngredient(adapter.getIngredientName(position));
                     }
                 }

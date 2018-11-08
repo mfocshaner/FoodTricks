@@ -1,10 +1,12 @@
 package com.huji.foodtricks.foodtricks;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,9 +52,40 @@ public class ImageAdapter extends BaseAdapter {
             new Ingredient(R.drawable.lemon, "lemon"),
             new Ingredient(R.drawable.ginger, "ginger"),
             new Ingredient(R.drawable.grapes, "grapes"),
-            new Ingredient(R.drawable.apple, "apple"),
+            new Ingredient(R.drawable.apple, "apple")
+    };
+    // references to our images
+    private static Integer[] ingredientId = {
+            R.drawable.apple, R.drawable.avocado,
+            R.drawable.beans, R.drawable.broccoli,
+            R.drawable.butter, R.drawable.carrot,
+            R.drawable.cauliflower, R.drawable.cheese,
+            R.drawable.chicken, R.drawable.chili,
+            R.drawable.cucumber, R.drawable.eggs,
+            R.drawable.fish, R.drawable.flour,
+            R.drawable.garlic, R.drawable.grapes,
+            R.drawable.lemon, R.drawable.lettuce,
+            R.drawable.mushroom, R.drawable.olive_oil,
+            R.drawable.onion, R.drawable.rice,
+            R.drawable.beef, R.drawable.pasta,
+            R.drawable.sausage, R.drawable.spinach,
+            R.drawable.tomato, R.drawable.potatoes,
+            R.drawable.bacon, R.drawable.bell_pepper,
+            R.drawable.cabbage, R.drawable.ginger,
+            R.drawable.leek
     };
 
+    private static String[] ingredientName = {
+            "apple", "avocado", "beans", "broccoli",
+            "butter", "carrot", "cauliflower", "cheese",
+            "chicken", "chili", "cucumber", "eggs",
+            "fish", "flour", "garlic", "grapes",
+            "lemon", "lettuce", "mushroom", "olive_oil",
+            "onion", "rice", "beef", "pasta",
+            "sausage", "spinach", "tomato", "potatoes",
+            "bacon", "bell_pepper", "cabbage", "ginger",
+            "leek"
+    };
 
 
     static final int INGREDIENTS_AMOUNT = ingredients.length;
@@ -73,6 +106,7 @@ public class ImageAdapter extends BaseAdapter {
         return ingredients.length;
     }
 
+
     public Object getItem(int position) {
         return null;
     }
@@ -84,25 +118,32 @@ public class ImageAdapter extends BaseAdapter {
     public void setIsPressed(int id) {
         isPressed[id] = !isPressed[id];
     }
+
     public boolean getIsPressed(int id) {
         return isPressed[id];
     }
     // create a new ImageView for each item referenced by the Adapter
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
+        View customView;
+        LayoutInflater inflater = (LayoutInflater) mContext.
+                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
-            imageView = new ImageView(mContext);
-            imageView.setAdjustViewBounds(true);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8, 8, 8, 8);
-        } else {
-            imageView = (ImageView) convertView;
-        }
-        imageView.setImageResource(ingredients[position].getIcon());
+            customView = new View(mContext);
 
-        return imageView;
+            customView = inflater.inflate(R.layout.imagetext_layout, null);
+            TextView customText = (TextView) customView.findViewById(R.id.custom_text);
+            ImageView customImage = (ImageView) customView.findViewById(R.id.custom_image);
+            customText.setText(ingredientName[position]);
+            customImage.setImageResource(ingredientId[position]);
+
+        } else {
+            customView = (View) convertView; // when does this happen?
+        }
+
+        return customView;
     }
 
     public String getIngredientName(int id) {
@@ -113,6 +154,39 @@ public class ImageAdapter extends BaseAdapter {
         for (int i = 0; i < INGREDIENTS_AMOUNT; ++i){
             ingredientsConversionMap.put(i, ingredients[i].getName());
         }
+        ingredientsConversionMap.put(0, "apple");
+        ingredientsConversionMap.put(1, "avocado");
+        ingredientsConversionMap.put(2, "beans");
+        ingredientsConversionMap.put(3, "broccoli");
+        ingredientsConversionMap.put(4, "butter");
+        ingredientsConversionMap.put(5, "carrot");
+        ingredientsConversionMap.put(6, "cauliflower");
+        ingredientsConversionMap.put(7, "cheese");
+        ingredientsConversionMap.put(8, "chicken");
+        ingredientsConversionMap.put(9, "chili");
+        ingredientsConversionMap.put(10, "cucumber");
+        ingredientsConversionMap.put(11, "eggs");
+        ingredientsConversionMap.put(12, "fish");
+        ingredientsConversionMap.put(13, "flour");
+        ingredientsConversionMap.put(14, "garlic");
+        ingredientsConversionMap.put(15, "grapes");
+        ingredientsConversionMap.put(16, "lemon");
+        ingredientsConversionMap.put(17, "lettuce");
+        ingredientsConversionMap.put(18, "mushroom");
+        ingredientsConversionMap.put(19, "olive oil");
+        ingredientsConversionMap.put(20, "onion");
+        ingredientsConversionMap.put(21, "rice");
+        ingredientsConversionMap.put(22, "beef");
+        ingredientsConversionMap.put(23, "pasta");
+        ingredientsConversionMap.put(24, "sausage");
+        ingredientsConversionMap.put(25, "spinach");
+        ingredientsConversionMap.put(26, "tomato");
+        ingredientsConversionMap.put(27, "potato");
+        ingredientsConversionMap.put(28, "bacon");
+        ingredientsConversionMap.put(29, "bell pepper");
+        ingredientsConversionMap.put(30, "cabbage");
+        ingredientsConversionMap.put(31, "ginger");
+        ingredientsConversionMap.put(32, "leek");
     }
 
 }
