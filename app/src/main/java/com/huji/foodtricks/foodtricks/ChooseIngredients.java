@@ -17,13 +17,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
+
 import java.util.Scanner;
 
 import static com.huji.foodtricks.foodtricks.R.color.dot_dark_screen1;
@@ -162,6 +161,12 @@ public class ChooseIngredients extends AppCompatActivity {
 
             startActivity(feedIntent);
         }
+    }
+
+    public void excludeAllIngridients(View view) {
+        final GridView gridview = (GridView) findViewById(R.id.gridview);
+        gridview.setAdapter(new ImageAdapter(this));
+        gridview.clearChoices();
     }
 
     @Override
