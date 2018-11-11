@@ -1,7 +1,9 @@
 package com.huji.foodtricks.foodtricks;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +21,19 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import java.util.Scanner;
+
+import static com.huji.foodtricks.foodtricks.R.color.dot_dark_screen1;
+import static com.huji.foodtricks.foodtricks.R.color.dot_dark_screen2;
+import static com.huji.foodtricks.foodtricks.R.color.dot_light_screen1;
+import static com.huji.foodtricks.foodtricks.R.color.dot_light_screen2;
+import static com.huji.foodtricks.foodtricks.R.color.dot_light_screen3;
+import static com.huji.foodtricks.foodtricks.R.color.dot_light_screen4;
+import static com.huji.foodtricks.foodtricks.R.color.dot_light_screen5;
+import static com.huji.foodtricks.foodtricks.R.color.material_blue_grey_800;
+import static com.huji.foodtricks.foodtricks.R.color.primary_dark_material_dark;
 
 
 public class ChooseIngredients extends AppCompatActivity {
@@ -31,8 +45,11 @@ public class ChooseIngredients extends AppCompatActivity {
     private static final int MAX_RECIPES = 10;
     static final String INGREDIENTS = "Ingredients";
     static final String COOKING_TIME = "CookingTime";
+    static final Integer DEFAULT_BACKGROUND = 0;
+    static final Integer NUM_OF_COLORS = 5;
 
     private IngredientsList ingredientsList;
+    private Integer[] COLORS = new Integer[NUM_OF_COLORS];
 
 
     protected static String buildUrl(ArrayList<String> ingridients) {
@@ -63,6 +80,12 @@ public class ChooseIngredients extends AppCompatActivity {
 
         ingredientsList = new IngredientsList();
         changeStatusBarColor();
+        COLORS[0] = getResources().getColor(dot_light_screen1);
+        COLORS[1] = getResources().getColor(dot_light_screen2);
+        COLORS[2] = getResources().getColor(dot_light_screen3);
+        COLORS[3] = getResources().getColor(dot_light_screen4);
+        COLORS[4] = getResources().getColor(dot_light_screen5);
+
     }
 
     /**
@@ -88,13 +111,12 @@ public class ChooseIngredients extends AppCompatActivity {
                 adapter.setIsPressed(position);
                 if (position < ImageAdapter.INGREDIENTS_AMOUNT) {
                     if (adapter.getIsPressed(position)) {
-                        ImageView imageView = (ImageView) v;
-                        imageView.setImageAlpha(100);
+
+                        v.setBackgroundColor(COLORS[position % NUM_OF_COLORS]);
                         ingredientsList.addIngredient(adapter.getIngredientName(position));
 
                     } else {
-                        ImageView imageView = (ImageView) v;
-                        imageView.setImageAlpha(255);
+                        v.setBackgroundColor(DEFAULT_BACKGROUND);
                         ingredientsList.removeIngredient(adapter.getIngredientName(position));
                     }
                 }
