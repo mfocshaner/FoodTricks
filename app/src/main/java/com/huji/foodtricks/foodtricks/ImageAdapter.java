@@ -55,7 +55,7 @@ public class ImageAdapter extends BaseAdapter {
             new Ingredient(R.drawable.apple, "apple")
     };
     // references to our images
-    private static Integer[] ingredientId = {
+    private static Integer[] ingredientIds = {
             R.drawable.apple, R.drawable.avocado,
             R.drawable.beans, R.drawable.broccoli,
             R.drawable.butter, R.drawable.carrot,
@@ -75,7 +75,7 @@ public class ImageAdapter extends BaseAdapter {
             R.drawable.leek
     };
 
-    private static String[] ingredientName = {
+    private static String[] ingredientNames = {
             "apple", "avocado", "beans", "broccoli",
             "butter", "carrot", "cauliflower", "cheese",
             "chicken", "chili", "cucumber", "eggs",
@@ -129,19 +129,18 @@ public class ImageAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) mContext.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        if (convertView == null) {
-            // if it's not recycled, initialize some attributes
-            customView = new View(mContext);
-
-            customView = inflater.inflate(R.layout.imagetext_layout, null);
-            TextView customText = (TextView) customView.findViewById(R.id.custom_text);
-            ImageView customImage = (ImageView) customView.findViewById(R.id.custom_image);
-            customText.setText(ingredientName[position]);
-            customImage.setImageResource(ingredientId[position]);
-
-        } else {
-            customView = (View) convertView; // when does this happen?
+        if (convertView != null) {
+            customView = (View) convertView;
+            return customView;
         }
+        // if it's not recycled, initialize some attributes
+        customView = new View(mContext);
+
+        customView = inflater.inflate(R.layout.imagetext_layout, null);
+        TextView customText = (TextView) customView.findViewById(R.id.custom_text);
+        ImageView customImage = (ImageView) customView.findViewById(R.id.custom_image);
+        customText.setText(ingredientNames[position]);
+        customImage.setImageResource(ingredientIds[position]);
 
         return customView;
     }
@@ -151,7 +150,7 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     private void initializeConversionMap() {
-        for (int i = 0; i < INGREDIENTS_AMOUNT; ++i){
+        for (int i = 0; i < INGREDIENTS_AMOUNT; ++i) {
             ingredientsConversionMap.put(i, ingredients[i].getName());
         }
         ingredientsConversionMap.put(0, "apple");

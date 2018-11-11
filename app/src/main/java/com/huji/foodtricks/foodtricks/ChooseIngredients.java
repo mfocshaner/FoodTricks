@@ -46,11 +46,11 @@ public class ChooseIngredients extends AppCompatActivity {
     private static final int MAX_RECIPES = 10;
     static final String INGREDIENTS = "Ingredients";
     static final String COOKING_TIME = "CookingTime";
-    static final Integer ITEM_PRESSED = 70;
-    static final Integer ITEM_UNPRESSED = 255;
+    static final Integer DEFAULT_BACKGROUND = 0;
+    static final Integer NUM_OF_COLORS = 5;
 
     private IngredientsList ingredientsList;
-    private Integer[] COLOURS = new Integer[5];
+    private Integer[] COLORS = new Integer[NUM_OF_COLORS];
 
 
     protected static String buildUrl(ArrayList<String> ingridients) {
@@ -81,11 +81,11 @@ public class ChooseIngredients extends AppCompatActivity {
 
         ingredientsList = new IngredientsList();
         changeStatusBarColor();
-        COLOURS[0] = getResources().getColor(dot_light_screen1);
-        COLOURS[1] = getResources().getColor(dot_light_screen2);
-        COLOURS[2] = getResources().getColor(dot_light_screen3);
-        COLOURS[3] = getResources().getColor(dot_light_screen4);
-        COLOURS[4] = getResources().getColor(dot_light_screen5);
+        COLORS[0] = getResources().getColor(dot_light_screen1);
+        COLORS[1] = getResources().getColor(dot_light_screen2);
+        COLORS[2] = getResources().getColor(dot_light_screen3);
+        COLORS[3] = getResources().getColor(dot_light_screen4);
+        COLORS[4] = getResources().getColor(dot_light_screen5);
 
     }
 
@@ -110,17 +110,14 @@ public class ChooseIngredients extends AppCompatActivity {
                                     int position, long id) {
                 ImageAdapter adapter = (ImageAdapter) gridview.getAdapter();
                 adapter.setIsPressed(position);
-                ImageView imageView;
                 if (position < ImageAdapter.INGREDIENTS_AMOUNT) {
                     if (adapter.getIsPressed(position)) {
-//                        imageView = (ImageView) v.findViewById(R.id.custom_image);
-                        v.setBackgroundColor(COLOURS[position % 5]);
+
+                        v.setBackgroundColor(COLORS[position % NUM_OF_COLORS]);
                         ingredientsList.addIngredient(adapter.getIngredientName(position));
 
                     } else {
-//                        imageView = (ImageView) v.findViewById(R.id.custom_image);
-//                        imageView.setImageAlpha(ITEM_UNPRESSED);
-                        v.setBackgroundColor(0);
+                        v.setBackgroundColor(DEFAULT_BACKGROUND);
                         ingredientsList.removeIngredient(adapter.getIngredientName(position));
                     }
                 }
