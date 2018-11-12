@@ -1,6 +1,7 @@
 package com.huji.foodtricks.foodtricks;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,6 +111,7 @@ public class ImageAdapter extends BaseAdapter {
         ImageView customImage = (ImageView) customView.findViewById(R.id.custom_image);
         customText.setText(ingredients[position].getName());
         customText.setTextSize(INGREDIENT_TEXT_SIZE);
+        customText.setTypeface(null, Typeface.BOLD);
         customImage.setImageResource(ingredients[position].getIcon());
 
         return customView;
