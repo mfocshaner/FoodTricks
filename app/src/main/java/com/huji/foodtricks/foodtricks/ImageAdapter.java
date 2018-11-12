@@ -18,73 +18,42 @@ import java.util.HashMap;
 public class ImageAdapter extends BaseAdapter {
 
     private Context mContext;
+    private static int INGREDIENT_TEXT_SIZE = 14;
 
     private static Ingredient[] ingredients = {
-            new Ingredient(R.drawable.pasta, "pasta"),
-            new Ingredient(R.drawable.rice, "rice"),
-            new Ingredient(R.drawable.potatoes, "potatoes"),
-            new Ingredient(R.drawable.flour, "flour"),
-            new Ingredient(R.drawable.cheese, "cheese"),
-            new Ingredient(R.drawable.beef, "beef"),
-            new Ingredient(R.drawable.chicken, "chicken"),
-            new Ingredient(R.drawable.fish, "fish"),
-            new Ingredient(R.drawable.eggs, "eggs"),
-            new Ingredient(R.drawable.beans, "beans"),
-            new Ingredient(R.drawable.broccoli, "broccoli"),
-            new Ingredient(R.drawable.carrot, "carrot"),
-            new Ingredient(R.drawable.cauliflower, "cauliflower"),
-            new Ingredient(R.drawable.leek, "leek"),
-            new Ingredient(R.drawable.mushroom, "mushroom"),
-            new Ingredient(R.drawable.sausage, "sausage"),
-            new Ingredient(R.drawable.tomato, "tomato"),
-            new Ingredient(R.drawable.avocado, "avocado"),
-            new Ingredient(R.drawable.bell_pepper, "bell pepper"),
-            new Ingredient(R.drawable.cabbage, "cabbage"),
-            new Ingredient(R.drawable.lettuce, "lettuce"),
-            new Ingredient(R.drawable.cucumber, "cucumber"),
-            new Ingredient(R.drawable.spinach, "spinach"),
-            new Ingredient(R.drawable.bacon, "bacon"),
-            new Ingredient(R.drawable.butter, "butter"),
-            new Ingredient(R.drawable.olive_oil, "olive oil"),
-            new Ingredient(R.drawable.onion, "onion"),
-            new Ingredient(R.drawable.garlic, "garlic"),
-            new Ingredient(R.drawable.chili, "chili"),
-            new Ingredient(R.drawable.lemon, "lemon"),
-            new Ingredient(R.drawable.ginger, "ginger"),
-            new Ingredient(R.drawable.grapes, "grapes"),
-            new Ingredient(R.drawable.apple, "apple")
-    };
-    // references to our images
-    private static Integer[] ingredientIds = {
-            R.drawable.apple, R.drawable.avocado,
-            R.drawable.beans, R.drawable.broccoli,
-            R.drawable.butter, R.drawable.carrot,
-            R.drawable.cauliflower, R.drawable.cheese,
-            R.drawable.chicken, R.drawable.chili,
-            R.drawable.cucumber, R.drawable.eggs,
-            R.drawable.fish, R.drawable.flour,
-            R.drawable.garlic, R.drawable.grapes,
-            R.drawable.lemon, R.drawable.lettuce,
-            R.drawable.mushroom, R.drawable.olive_oil,
-            R.drawable.onion, R.drawable.rice,
-            R.drawable.beef, R.drawable.pasta,
-            R.drawable.sausage, R.drawable.spinach,
-            R.drawable.tomato, R.drawable.potatoes,
-            R.drawable.bacon, R.drawable.bell_pepper,
-            R.drawable.cabbage, R.drawable.ginger,
-            R.drawable.leek
-    };
-
-    private static String[] ingredientNames = {
-            "apple", "avocado", "beans", "broccoli",
-            "butter", "carrot", "cauliflower", "cheese",
-            "chicken", "chili", "cucumber", "eggs",
-            "fish", "flour", "garlic", "grapes",
-            "lemon", "lettuce", "mushroom", "olive_oil",
-            "onion", "rice", "beef", "pasta",
-            "sausage", "spinach", "tomato", "potatoes",
-            "bacon", "bell_pepper", "cabbage", "ginger",
-            "leek"
+            new Ingredient(R.drawable.pasta, "Pasta"),
+            new Ingredient(R.drawable.rice, "Rice"),
+            new Ingredient(R.drawable.potatoes, "Potatoes"),
+            new Ingredient(R.drawable.flour, "Flour"),
+            new Ingredient(R.drawable.cheese, "Cheese"),
+            new Ingredient(R.drawable.beef, "Beef"),
+            new Ingredient(R.drawable.chicken, "Chicken"),
+            new Ingredient(R.drawable.fish, "Fish"),
+            new Ingredient(R.drawable.eggs, "Eggs"),
+            new Ingredient(R.drawable.beans, "Beans"),
+            new Ingredient(R.drawable.broccoli, "Broccoli"),
+            new Ingredient(R.drawable.carrot, "Carrot"),
+            new Ingredient(R.drawable.cauliflower, "Cauliflower"),
+            new Ingredient(R.drawable.leek, "Leek"),
+            new Ingredient(R.drawable.mushroom, "Mushroom"),
+            new Ingredient(R.drawable.sausage, "Sausage"),
+            new Ingredient(R.drawable.tomato, "Tomato"),
+            new Ingredient(R.drawable.avocado, "Avocado"),
+            new Ingredient(R.drawable.bell_pepper, "Bell Pepper"),
+            new Ingredient(R.drawable.cabbage, "Cabbage"),
+            new Ingredient(R.drawable.lettuce, "Lettuce"),
+            new Ingredient(R.drawable.cucumber, "Cucumber"),
+            new Ingredient(R.drawable.spinach, "Spinach"),
+            new Ingredient(R.drawable.bacon, "Bacon"),
+            new Ingredient(R.drawable.butter, "Butter"),
+            new Ingredient(R.drawable.olive_oil, "Olive Oil"),
+            new Ingredient(R.drawable.onion, "Onion"),
+            new Ingredient(R.drawable.garlic, "Garlic"),
+            new Ingredient(R.drawable.chili, "Chili"),
+            new Ingredient(R.drawable.lemon, "Lemon"),
+            new Ingredient(R.drawable.ginger, "Ginger"),
+            new Ingredient(R.drawable.grapes, "Grapes"),
+            new Ingredient(R.drawable.apple, "Apple")
     };
 
 
@@ -139,8 +108,9 @@ public class ImageAdapter extends BaseAdapter {
         customView = inflater.inflate(R.layout.imagetext_layout, null);
         TextView customText = (TextView) customView.findViewById(R.id.custom_text);
         ImageView customImage = (ImageView) customView.findViewById(R.id.custom_image);
-        customText.setText(ingredientNames[position]);
-        customImage.setImageResource(ingredientIds[position]);
+        customText.setText(ingredients[position].getName());
+        customText.setTextSize(INGREDIENT_TEXT_SIZE);
+        customImage.setImageResource(ingredients[position].getIcon());
 
         return customView;
     }
@@ -153,39 +123,6 @@ public class ImageAdapter extends BaseAdapter {
         for (int i = 0; i < INGREDIENTS_AMOUNT; ++i) {
             ingredientsConversionMap.put(i, ingredients[i].getName());
         }
-        ingredientsConversionMap.put(0, "apple");
-        ingredientsConversionMap.put(1, "avocado");
-        ingredientsConversionMap.put(2, "beans");
-        ingredientsConversionMap.put(3, "broccoli");
-        ingredientsConversionMap.put(4, "butter");
-        ingredientsConversionMap.put(5, "carrot");
-        ingredientsConversionMap.put(6, "cauliflower");
-        ingredientsConversionMap.put(7, "cheese");
-        ingredientsConversionMap.put(8, "chicken");
-        ingredientsConversionMap.put(9, "chili");
-        ingredientsConversionMap.put(10, "cucumber");
-        ingredientsConversionMap.put(11, "eggs");
-        ingredientsConversionMap.put(12, "fish");
-        ingredientsConversionMap.put(13, "flour");
-        ingredientsConversionMap.put(14, "garlic");
-        ingredientsConversionMap.put(15, "grapes");
-        ingredientsConversionMap.put(16, "lemon");
-        ingredientsConversionMap.put(17, "lettuce");
-        ingredientsConversionMap.put(18, "mushroom");
-        ingredientsConversionMap.put(19, "olive oil");
-        ingredientsConversionMap.put(20, "onion");
-        ingredientsConversionMap.put(21, "rice");
-        ingredientsConversionMap.put(22, "beef");
-        ingredientsConversionMap.put(23, "pasta");
-        ingredientsConversionMap.put(24, "sausage");
-        ingredientsConversionMap.put(25, "spinach");
-        ingredientsConversionMap.put(26, "tomato");
-        ingredientsConversionMap.put(27, "potato");
-        ingredientsConversionMap.put(28, "bacon");
-        ingredientsConversionMap.put(29, "bell pepper");
-        ingredientsConversionMap.put(30, "cabbage");
-        ingredientsConversionMap.put(31, "ginger");
-        ingredientsConversionMap.put(32, "leek");
     }
 
 }
