@@ -27,6 +27,8 @@ import java.util.Scanner;
 
 import static com.huji.foodtricks.foodtricks.R.color.dot_dark_screen1;
 import static com.huji.foodtricks.foodtricks.R.color.dot_dark_screen2;
+import static com.huji.foodtricks.foodtricks.R.color.dot_dark_screen3;
+import static com.huji.foodtricks.foodtricks.R.color.dot_dark_screen4;
 import static com.huji.foodtricks.foodtricks.R.color.dot_light_screen1;
 import static com.huji.foodtricks.foodtricks.R.color.dot_light_screen2;
 import static com.huji.foodtricks.foodtricks.R.color.dot_light_screen3;
@@ -44,12 +46,11 @@ public class ChooseIngredients extends AppCompatActivity {
     private static final String LIMIT_RECIPES = "&to=";
     private static final int MAX_RECIPES = 10;
     static final String INGREDIENTS = "Ingredients";
-    static final String COOKING_TIME = "CookingTime";
     static final Integer DEFAULT_BACKGROUND = 0;
     static final Integer NUM_OF_COLORS = 5;
 
     private IngredientsList ingredientsList;
-    private Integer[] COLORS = new Integer[NUM_OF_COLORS];
+    private static final Integer[] COLORS = new Integer[NUM_OF_COLORS];
 
 
     protected static String buildUrl(ArrayList<String> ingridients) {

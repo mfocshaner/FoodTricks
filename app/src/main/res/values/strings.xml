@@ -12,9 +12,11 @@
     <string name="slide_1_desc">The easiest way to fix yourself a quick meal</string>
 
     <string name="slide_2_title">Few clicks</string>
-    <string name="slide_2_desc">Just click an item to include it, and prass the "feed me" button above</string>
+    <string name="slide_2_desc">Click on the ingredients you have\n\n
+Done?\n\n
+Press the button to find recipes!</string>
 
-    <string name="slide_3_title">Want to start over?</string>
-    <string name="slide_3_desc">If you want to exclude all ingredients, just press this button!</string>
+    <string name="slide_3_title">Any regrets?</string>
+    <string name="slide_3_desc">Use the button to start over</string>
 
 </resources>
